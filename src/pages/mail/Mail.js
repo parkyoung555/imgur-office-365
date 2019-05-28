@@ -6,7 +6,7 @@ export class Mail extends Component {
   render() {
     return(
       <div className='mail-component'>
-        mail
+        Put mail shit here
       </div>
     );
   }
