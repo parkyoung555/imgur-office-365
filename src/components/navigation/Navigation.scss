@@ -1,0 +1,80 @@
+@import "../../assets/styles/modules/variables";
+
+$_navigation__expanded__width: 295px;
+$_navigation__collapsed__width: 48px;
+
+.navigation-component {
+    background-color: $ms-color-neutralLighter;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    &:not(.collapsed) {
+        width: $_navigation__expanded__width;
+    }
+
+    &.collapsed {
+        width: $_navigation__collapsed__width;
+
+        .new-message {
+            display: none;
+        }
+
+        .links {
+            visibility: hidden;
+        }
+
+        .footer {
+            display: block;
+            height: auto;
+
+            > button {
+                height: $_navigation__collapsed__width;
+                width: 100%;
+            }
+        }
+    }
+
+    button {
+
+        &:hover {
+            background-color: transparentize($primary-color, .88);
+        }
+    }
+
+    .header,
+    .footer {
+        flex-shrink: 0;
+    }
+
+    .header {
+        border-bottom: 1px solid $ms-color-neutralLight;
+        height: 44px;
+
+        > button {
+            height: 100%;
+
+            &.toggle-collapse {
+                color: #000;
+                width: 48px;
+            }
+        }
+    }
+
+    .footer {
+        border-top: 1px solid $ms-color-neutralLight;
+        display: flex;
+        flex-direction: row;
+        height: 48px;
+
+        > button {
+            flex: 1 1 auto;
+            height: 100%;
+        }
+    }
+
+    .links {
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+}

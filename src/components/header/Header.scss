@@ -1,0 +1,60 @@
+@import "../../assets/styles/modules/variables";
+
+$_header-height: 48px;
+
+.header-component {
+    @include ms-bgColor-black;
+    color: #fff;
+    flex-shrink: 0;
+    height: $_header-height;
+
+
+    > .header-row {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        > hr {
+            background-color: rgba(255, 255, 255, .4);
+            border: none;
+            height: 30px;
+            margin: 0 0;
+            width: 1px;
+        }
+
+        > h1, h2 {
+            margin: 0 0;
+            padding: 0 ($baseline-grid * 2) 0 $baseline-grid;
+        }
+    }
+
+    button {
+        color: inherit !important;
+        height: 100%;
+        width: $_header-height;
+
+        &.applications {
+            //background-color: $primary-color;
+
+            i {
+                font-size: 16px;
+            }
+            //
+            //&:hover {
+            //    background-color: darken($primary-color, 12%);
+            //}
+        }
+
+        //&:not(.applications) {
+        //
+        //    &:hover {
+        //        background-color: transparentize($primary-color, .5);
+        //    }
+        //}
+
+        &:hover {
+            background-color: transparentize($primary-color, .3);
+        }
+    }
+}

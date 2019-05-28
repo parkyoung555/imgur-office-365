@@ -1,0 +1,7 @@
+@mixin rtl-prop($ltr-prop, $rtl-prop, $value, $reset-value) {
+    #{$ltr-prop}: $value;
+    [dir=rtl] & {
+        #{$ltr-prop}: $reset-value;
+        #{$rtl-prop}: $value;
+    }
+}
