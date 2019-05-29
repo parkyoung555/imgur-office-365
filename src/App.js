@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Customizer } from 'office-ui-fabric-react';
 import { FluentCustomizations } from '@uifabric/fluent-theme';
@@ -38,21 +38,45 @@ loadTheme({
 
 initializeIcons();
 
-function App() {
-  return (
-    <Customizer {...FluentCustomizations}>
-      <Router className='layout-column'>
-        <Header />
-        <div className='layout-row flex-auto'>
-          <Navigation />
-          <Route path='/' exact render={() => (
-            <Redirect to='/mail' />
-          )} />
-          <Route path='/mail' exact component={Mail}/>
-        </div>
-      </Router>
-    </Customizer>
-  );
-}
+export default class App extends Component {
 
-export default App;
+  state = {
+    menuCollapsed: false
+  };
+
+  constructor(props){
+    super(props);
+
+    this.toggleMenuCollapse = this.toggleMenuCollapse.bind(this);
+    this.newPostHandler = this.newPostHandler.bind(this);
+  }
+
+  render () {
+    return (
+      <Customizer {...FluentCustomizations}>
+        <Router className='layout-column'>
+          <Header />
+          <div className='layout-row flex-auto'>
+            <Navigation toggleMenuCollapse={this.toggleMenuCollapse} isMenuCollapsed={this.state.menuCollapsed} newPostHandler={this.newPostHandler} />
+            <Route path='/' exact render={() => (
+              <Redirect to='/mail' />
+            )} />
+            <Route path='/mail' exact render={(props) => (<Mail {...props} isMenuCollapsed={this.state.menuCollapsed} newPostHandler={this.newPostHandler} />)} />
+          </div>
+        </Router>
+      </Customizer>
+    );
+  }
+
+  toggleMenuCollapse() {
+    this.setState((state, props) => {
+      return {
+        menuCollapsed: !state.menuCollapsed
+      };
+    });
+  }
+
+  newPostHandler() {
+    alert('New post!');
+  }
+}

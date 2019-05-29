@@ -1,0 +1,21 @@
+@import "../../assets/styles/modules/variables";
+
+.sub-header-component {
+  background-color: $ms-color-neutralLighter;
+  border-bottom: 1px solid $ms-color-neutralLight;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 44px;
+
+  > * {
+    height: 100%;
+  }
+
+  > button {
+
+    &:hover {
+      background-color: transparentize($primary-color, .88);
+    }
+  }
+}

@@ -27,34 +27,60 @@ $_header-height: 48px;
             margin: 0 0;
             padding: 0 ($baseline-grid * 2) 0 $baseline-grid;
         }
-    }
 
-    button {
-        color: inherit !important;
-        height: 100%;
-        width: $_header-height;
-
-        &.applications {
-            //background-color: $primary-color;
-
-            i {
-                font-size: 16px;
-            }
-            //
-            //&:hover {
-            //    background-color: darken($primary-color, 12%);
-            //}
+        > h1 {
+            flex: 0 0 210px;
         }
 
-        //&:not(.applications) {
-        //
-        //    &:hover {
-        //        background-color: transparentize($primary-color, .5);
-        //    }
-        //}
+        .ms-BasePicker {
+            background-color: white;
+            border-radius: 2px;
+            width: 800px;
 
-        &:hover {
-            background-color: transparentize($primary-color, .3);
+            .ms-BasePicker-text {
+                border: none;
+            }
+
+            input {
+                border: none;
+                height: 32px;
+            }
+
+            .ms-PickerPersona-container {
+
+                .ms-Persona-primaryText {
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        > button {
+            color: inherit !important;
+            height: 100%;
+            width: $_header-height;
+
+            &.applications {
+                //background-color: $primary-color;
+
+                i {
+                    font-size: 16px;
+                }
+                //
+                //&:hover {
+                //    background-color: darken($primary-color, 12%);
+                //}
+            }
+
+            //&:not(.applications) {
+            //
+            //    &:hover {
+            //        background-color: transparentize($primary-color, .5);
+            //    }
+            //}
+
+            &:hover {
+                background-color: transparentize($primary-color, .3);
+            }
         }
     }
 }

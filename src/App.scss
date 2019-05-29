@@ -1,2 +1,9 @@
 @import "./assets/styles/modules";
 @import "./assets/styles/partials";
+
+.navigation-component {
+
+  + * {
+    flex: 1 1 auto;
+  }
+}

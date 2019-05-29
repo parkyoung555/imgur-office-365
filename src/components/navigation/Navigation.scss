@@ -1,8 +1,5 @@
 @import "../../assets/styles/modules/variables";
 
-$_navigation__expanded__width: 295px;
-$_navigation__collapsed__width: 48px;
-
 .navigation-component {
     background-color: $ms-color-neutralLighter;
     display: flex;
@@ -10,11 +7,11 @@ $_navigation__collapsed__width: 48px;
     flex-shrink: 0;
 
     &:not(.collapsed) {
-        width: $_navigation__expanded__width;
+        width: $navigation__expanded__width;
     }
 
     &.collapsed {
-        width: $_navigation__collapsed__width;
+        width: $navigation__collapsed__width;
 
         .new-message {
             display: none;
@@ -32,15 +29,13 @@ $_navigation__collapsed__width: 48px;
             height: auto;
 
             > button {
-                height: $_navigation__collapsed__width;
+                height: $navigation__collapsed__width;
                 width: 100%;
             }
         }
     }
 
-    .header,
     .footer {
-        flex-shrink: 0;
 
         button {
 
@@ -50,16 +45,13 @@ $_navigation__collapsed__width: 48px;
         }
     }
 
-    .header {
-        border-bottom: 1px solid $ms-color-neutralLight;
-        height: 44px;
+    .sub-header-component {
 
         > button {
-            height: 100%;
 
             &.toggle-collapse {
                 color: #000;
-                width: $_navigation__collapsed__width;
+                width: $navigation__collapsed__width;
             }
         }
     }
@@ -68,7 +60,8 @@ $_navigation__collapsed__width: 48px;
         border-top: 1px solid $ms-color-neutralLight;
         display: flex;
         flex-direction: row;
-        height: $_navigation__collapsed__width;
+        flex-shrink: 0;
+        height: $navigation__collapsed__width;
 
         > button {
             flex: 1 1 auto;
@@ -91,18 +84,18 @@ $_navigation__collapsed__width: 48px;
                 button,
                 .ms-Button {
                     border: none;
-                    color: $ms-color-neutralPrimary;
+                    //color: $ms-color-neutralPrimary;
                     margin: 0 0;
                     padding-left: 0;
 
                     &:hover {
-                        color: $ms-color-black;
+                        //color: $ms-color-black;
                     }
 
                     &.ms-Nav-chevronButton {
                         font-size: 14px;
                         font-weight: 600;
-                        height: $_navigation__collapsed__width;
+                        height: $navigation__collapsed__width;
 
                         &:hover {
                             background-color: transparent;
@@ -113,7 +106,7 @@ $_navigation__collapsed__width: 48px;
                         margin: 0 $baseline-grid 0 0;
                         position: static;
                         text-align: center;
-                        width: $_navigation__collapsed__width;
+                        width: $navigation__collapsed__width;
                     }
 
                     .ms-Nav-linkText {
@@ -137,7 +130,7 @@ $_navigation__collapsed__width: 48px;
                             .ms-Button {
 
                                 &:not(.ms-Nav-chevronButton) {
-                                    padding-left: $_navigation__collapsed__width + $baseline-grid;
+                                    padding-left: $navigation__collapsed__width + $baseline-grid;
                                 }
                             }
                         }

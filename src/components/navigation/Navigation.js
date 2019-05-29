@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
+import { SubHeader } from "../sub-header/SubHeader";
 import { IconButton, ActionButton, Nav } from 'office-ui-fabric-react';
 import './Navigation.scss';
 
 export class Navigation extends Component {
 
-  state = {
-    menuCollapsed: false
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.toggleMenuCollapse = this.toggleMenuCollapse.bind(this);
-  }
-
   render() {
     return (
-      <div className={'navigation-component' + (this.state.menuCollapsed ? ' collapsed' : '')}>
-        <div className='header layout-row'>
-          <IconButton className='toggle-collapse' iconProps={{ iconName: 'GlobalNavButton' }} title='Menu' ariaLabel='Menu'  onClick={this.toggleMenuCollapse}/>
-          <ActionButton className='new-message' iconProps={{ iconName: 'Add' }} text='New message' />
-        </div>
+      <div className={'navigation-component' + (this.props.isMenuCollapsed ? ' collapsed' : '')}>
+        <SubHeader>
+          <IconButton className='toggle-collapse' iconProps={{ iconName: 'GlobalNavButton' }} title='Menu' ariaLabel='Menu'  onClick={this.props.toggleMenuCollapse}/>
+          <ActionButton className='new-message' iconProps={{ iconName: 'Add' }} text='New message' onClick={this.props.newPostHandler} />
+        </SubHeader>
         <div className='links'>
           <Nav
             expandButtonAriaLabel="Expand or collapse"
@@ -166,13 +157,5 @@ export class Navigation extends Component {
         </div>
       </div>
     );
-  }
-
-  toggleMenuCollapse() {
-    this.setState((state, props) => {
-      return {
-        menuCollapsed: !state.menuCollapsed
-      };
-    });
   }
 }
