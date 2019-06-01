@@ -1,9 +1,26 @@
 @import "./assets/styles/modules";
 @import "./assets/styles/partials";
 
+.header-component {
+
+    + * {
+        height: 0;
+    }
+}
+
+.sub-header-component {
+
+    + * {
+        flex: 1 1 auto;
+        height: 0;
+    }
+}
+
 .navigation-component {
 
   + * {
-    flex: 1 1 auto;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
   }
 }

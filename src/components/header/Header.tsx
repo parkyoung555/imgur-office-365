@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
-import { IconButton } from 'office-ui-fabric-react';
-import { Persona, PersonaPresence, PersonaSize, IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
-import {
-  CompactPeoplePicker,
-  IBasePickerSuggestionsProps,
-  IBasePicker,
-  ListPeoplePicker,
-  NormalPeoplePicker,
-  ValidationState
-} from 'office-ui-fabric-react/lib/Pickers';
-// import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import {IconButton, IPersonaProps} from 'office-ui-fabric-react';
+import { Persona, PersonaPresence, PersonaSize, NormalPeoplePicker } from 'office-ui-fabric-react';
 import { FontSizes } from '@uifabric/fluent-theme/lib/fluent/FluentType';
 import axios from 'axios';
 import './Header.scss';
 
 export class Header extends Component {
 
-  contacts = [];
+  contacts: IPersonaProps[] = [];
+  state = {
+    searchInputFocus: false
+  };
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.onFilterChanged = this.onFilterChanged.bind(this);
@@ -26,8 +20,7 @@ export class Header extends Component {
 
   componentDidMount() {
     axios.get('https://randomuser.me/api/?results=100&seed=lololol&inc=name,gender,email, phone, cell, picture&noinfo').then(results => {
-      this.contacts = this._processContactData(results.data.results);
-      console.log(this.contacts);
+      this.contacts = this.processContactData(results.data.results);
     });
   }
 
@@ -42,6 +35,11 @@ export class Header extends Component {
           <NormalPeoplePicker
             onResolveSuggestions={this.onFilterChanged}
             getTextFromItem={this.getTextFromItem}
+            inputProps={{
+              placeholder: 'Search',
+              onFocus: () => { this.setSearchInputFocus(true); },
+              onBlur: () => { this.setSearchInputFocus(false); },
+            }}
           />
           <span className='flex-auto' />
           {/*<IconButton iconProps={{ iconName: 'SkypeForBusinessLogo' }} title='Skype' ariaLabel='Skype' />*/}
@@ -56,20 +54,31 @@ export class Header extends Component {
     );
   }
 
-  onFilterChanged(filterText, currentPersonas, limitResults) {
-    const filteredContacts = this.contacts.filter(contact => (
-      contact.text.toLowerCase().indexOf(filterText.toLowerCase()) > -1
-    ));
-
-    return filteredContacts;
+  setSearchInputFocus(isFocused: boolean) {
+    this.setState((state, props) => {
+      return {
+        searchInputFocus: isFocused
+      };
+    })
   }
 
-  getTextFromItem(persona) {
-    return persona.text;
+  onFilterChanged(filterText: string, currentPersonas?: IPersonaProps[], limitResults?: number) {
+    if (filterText) {
+      return this.contacts.filter(contact => (
+        (currentPersonas ? currentPersonas.findIndex(currentPersona => (currentPersona.secondaryText === contact.secondaryText)) < 0 : true) &&
+          contact.text!.toLowerCase().indexOf(filterText.toLowerCase()) > -1
+      ));
+    } else {
+      return [];
+    }
   }
 
-  _processContactData(data) {
-    const res = [];
+  getTextFromItem(persona: IPersonaProps, currentValue?: string) {
+    return persona.text as string;
+  }
+
+  private processContactData(data: any[]): IPersonaProps[] {
+    const res: IPersonaProps[] = [];
 
     data.forEach(contact => {
       res.push({

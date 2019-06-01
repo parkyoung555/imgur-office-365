@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { SubHeader } from "../sub-header/SubHeader";
 import { IconButton, ActionButton, Nav } from 'office-ui-fabric-react';
 import './Navigation.scss';
 
-export class Navigation extends Component {
+type NavigationComponentProps = {
+  isMenuCollapsed: boolean
+  toggleMenuCollapse: () => void
+  newPostHandler: () => void
+};
+
+export class Navigation extends Component<NavigationComponentProps> {
 
   render() {
     return (
@@ -22,7 +28,8 @@ export class Navigation extends Component {
                   {
                     key: 'FavoritesSentItems',
                     name: 'Sent Items',
-                    icon: 'send'
+                    icon: 'send',
+                    url: ''
                   },
                   {
                     key: 'FavoritesInbox',
@@ -33,14 +40,16 @@ export class Navigation extends Component {
                   {
                     key: 'FavoritesDeletedItems',
                     name: 'Deleted Items',
-                    icon: 'trash'
+                    icon: 'trash',
+                    url: ''
                   },
                   {
                     key: 'AddFavorite',
                     name: 'Add favorite',
                     onClick: () => {
                       alert('Oh boy!');
-                    }
+                    },
+                    url: ''
                   }
                 ]
               },
@@ -50,7 +59,7 @@ export class Navigation extends Component {
                   {
                     key: 'FoldersInbox',
                     name: 'Inbox',
-                    // url: '/mail',
+                    url: '',
                     // icon: 'inbox',
                     links: [
                       {
@@ -73,50 +82,60 @@ export class Navigation extends Component {
                   {
                     key: 'FoldersJunkEmail',
                     name: 'Junk Email',
-                    icon: 'blocked'
+                    icon: 'blocked',
+                    url: ''
                   },
                   {
                     key: 'FoldersDrafts',
                     name: 'Drafts',
-                    icon: 'Edit'
+                    icon: 'Edit',
+                    url: ''
                   },
                   {
                     key: 'FoldersSentItems',
                     name: 'Sent Items',
-                    icon: 'send'
+                    icon: 'send',
+                    url: ''
                   },
                   {
                     key: 'FoldersDeletedItems',
                     name: 'Deleted Items',
-                    icon: 'trash'
+                    icon: 'trash',
+                    url: ''
                   },
                   {
                     key: 'FoldersArchive',
                     name: 'Archive',
-                    icon: 'archive'
+                    icon: 'archive',
+                    url: ''
                   },
                   {
                     key: 'FoldersCiscoJabberChats',
                     name: 'Cisco Jabber Chats',
+                    url: ''
                   },
                   {
                     key: 'FoldersConversationHistory',
                     name: 'Conversation History',
+                    url: ''
                   },
                   {
                     key: 'FoldersRSSFeeds',
                     name: 'RSS Feeds',
+                    url: ''
                   },
                   {
                     key: 'FoldersUnwanted',
                     name: 'Unwanted',
+                    url: ''
                   },
                   {
                     key: 'NewFolder',
                     name: 'New folder',
                     onClick: () => {
                       alert('Oh boy!');
-                    }
+                    },
+                    url: ''
                   }
                 ]
               },
@@ -128,21 +147,24 @@ export class Navigation extends Component {
                     name: 'New group',
                     onClick: () => {
                       alert('Oh boy!');
-                    }
+                    },
+                    url: ''
                   },
                   {
                     key: 'GroupsDiscoverGroups',
                     name: 'Discover groups',
                     onClick: () => {
                       alert('Oh boy!');
-                    }
+                    },
+                    url: ''
                   },
                   {
                     key: 'GroupsManageGroups',
                     name: 'Manage groups',
                     onClick: () => {
                       alert('Oh boy!');
-                    }
+                    },
+                    url: ''
                   }
                 ]
               }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect, RouteComponentProps} from 'react-router-dom';
 import { Customizer } from 'office-ui-fabric-react';
 import { FluentCustomizations } from '@uifabric/fluent-theme';
 import { Header } from './components/header/Header';
@@ -38,13 +38,17 @@ loadTheme({
 
 initializeIcons();
 
-export default class App extends Component {
+type AppComponentProps = {
+  menuCollapsed: boolean;
+};
+
+export default class App extends Component<RouteComponentProps, AppComponentProps> {
 
   state = {
     menuCollapsed: false
   };
 
-  constructor(props){
+  constructor(props: any){
     super(props);
 
     this.toggleMenuCollapse = this.toggleMenuCollapse.bind(this);
@@ -54,7 +58,7 @@ export default class App extends Component {
   render () {
     return (
       <Customizer {...FluentCustomizations}>
-        <Router className='layout-column'>
+        <Router>
           <Header />
           <div className='layout-row flex-auto'>
             <Navigation toggleMenuCollapse={this.toggleMenuCollapse} isMenuCollapsed={this.state.menuCollapsed} newPostHandler={this.newPostHandler} />
